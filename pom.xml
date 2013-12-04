@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This file is part of Jahia, next-generation open source CMS:
+    Jahia's next-generation, open source CMS stems from a widely acknowledged vision 
+    of enterprise application convergence - web, search, document, social and portal - 
+    unified by the simplicity of web content management. 
+
+    For more information, please visit http://www.jahia.com.
+
+    Copyright (C) 2002-2013 Jahia Solutions Group SA. All rights reserved.
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+    As a special exception to the terms and conditions of version 2.0 of
+    the GPL (or any later version), you may redistribute this Program in connection
+    with Free/Libre and Open Source Software ("FLOSS") applications as described
+    in Jahia's FLOSS exception. You should have received a copy of the text
+    describing the FLOSS exception, and it is also available here:
+    http://www.jahia.com/license
+
+    Commercial and Supported Versions of the program (dual licensing): 
+    alternatively, commercial and supported versions of the program may be used
+    in accordance with the terms and conditions contained in a separate 
+    written agreement between you and Jahia Solutions Group SA.
+    
+    If you are unsure which license is appropriate for your use, 
+    please contact the sales department at sales@jahia.com.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jahia.modules</groupId>
+    <artifactId>resteasy-osgi-bundle-parent</artifactId>
+    <name>JBoss RESTeasy OSGi bundle: Parent</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <description>Module exposing JBoss RESTeasy as an OSGi module.</description>
+
+    <properties>
+        <resteasy.version>3.0.5.Final</resteasy.version>
+        <osgi.core.version>4.3.1</osgi.core.version>
+        <osgi.compendium.version>4.3.1</osgi.compendium.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <bundle.version>${resteasy.version}-1.0.0-SNAPSHOT</bundle.version>
+    </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:metacosm/resteasy-osgi-bundle.git</connection>
+        <developerConnection>scm:git:git@github.com:metacosm/resteasy-osgi-bundle.git</developerConnection>
+        <url>scm:git:git@github.com:metacosm/resteasy-osgi-bundle.git</url>
+    </scm>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-bom</artifactId>
+                <version>${resteasy.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jahia.modules</groupId>
+                <artifactId>resteasy-osgi-bundle-core</artifactId>
+                <version>${bundle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jahia.modules</groupId>
+                <artifactId>resteasy-osgi-bundle-service-api</artifactId>
+                <version>${bundle.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.4.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jahia.server</groupId>
+                    <artifactId>jahia-maven-plugin</artifactId>
+                    <version>4.0-SNAPSHOT</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <modules>
+        <module>org-jboss-resteasy-core</module>
+        <module>org-jboss-resteasy-service-api</module>
+        <module>org-jboss-resteasy-service</module>
+    </modules>
+</project>

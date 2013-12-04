@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>resteasy-osgi-bundle-service-api</artifactId>
+    <name>JBoss RESTeasy OSGi bundle: API</name>
+    <version>${resteasy.version}-${parent.version}</version>
+    <packaging>bundle</packaging>
+
+    <parent>
+        <groupId>org.jahia.modules</groupId>
+        <artifactId>resteasy-osgi-bundle-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <supportedProjectTypes>
+                        <supportedProjectType>jar</supportedProjectType>
+                        <supportedProjectType>bundle</supportedProjectType>
+                        <supportedProjectType>war</supportedProjectType>
+                    </supportedProjectTypes>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+
+                        <Export-Package>org.jboss.resteasy.osgi.service.api.*</Export-Package>
+                        <!-- <Private-Package>org.jboss.osgi.resteasy.internal.*</Private-Package>  -->
+
+                        <!-- <Import-Package>*;resolution:=optional</Import-Package> -->
+                        <!-- <Embed-Dependency>*;scope=compile</Embed-Dependency> -->
+                        <!-- <Embed-Transitive>true</Embed-Transitive>  -->
+                        <!-- <Embed-Directory>OSGI-INF/lib</Embed-Directory> -->
+                        <!-- <Bundle-ClassPath>.</Bundle-ClassPath> -->
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
